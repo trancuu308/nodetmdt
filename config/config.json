@@ -1,20 +1,19 @@
 {
     "development": {
-        "username": "epmjabkgppldsm",
-        "password": "ccfa00e90584cd0101b1bd7cdc347639a8883e88b590cc79535da1d3f8ff111e",
-        "database": "d5tcra737f0g7b",
-        "host": "ec2-54-156-85-145.compute-1.amazonaws.com",
-        "dialect": "postgres",
-        "dialectOptions": {
-            "ssl": true
-        }
-    },
-    "test": {
         "username": "postgres",
         "password": "postgres",
         "database": "aromadb",
         "host": "localhost",
         "dialect": "postgres"
+        
+    },
+    "test": {
+        "username": "root",
+        "password": null,
+        "database": "database_test",
+        "host": "127.0.0.1",
+        "dialect": "mysql",
+        "logging": false
     },
     "production": {
         "username": "heroku-postgres-username",
