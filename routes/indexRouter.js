@@ -14,8 +14,7 @@ router.get('/', (req, res, next) => {
             res.locals.tredingProducts = data;
             res.render('index');
         })
-        .catch(error => next(error));
-        logging: false
+        .catch(error => next(error));   
 });
 
 module.exports = router;

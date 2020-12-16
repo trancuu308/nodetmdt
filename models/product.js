@@ -9,8 +9,7 @@ module.exports = (sequelize, DataTypes) => {
         imagepath: DataTypes.TEXT,
         thumbnailPath: DataTypes.TEXT,
         overallReview: DataTypes.DOUBLE,
-        reviewCount: DataTypes.INTEGER,
-        
+        reviewCount: DataTypes.INTEGER       
     }, {});
     Product.associate = function(models) {
         // associations can be defined here

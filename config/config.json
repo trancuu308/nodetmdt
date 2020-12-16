@@ -4,15 +4,17 @@
         "password": "postgres",
         "database": "aromadb",
         "host": "localhost",
-        "dialect": "postgres"
-        
+        "dialect": "postgres",
+        "operatorsAliases": 0,
+        "logging": false
     },
     "test": {
-        "username": "root",
-        "password": null,
-        "database": "database_test",
-        "host": "127.0.0.1",
-        "dialect": "mysql",
+        "username": "postgres",
+        "password": "postgres",
+        "database": "aromadb",
+        "host": "localhost",
+        "dialect": "postgres",
+        "operatorsAliases": 0,
         "logging": false
     },
     "production": {
@@ -22,10 +24,7 @@
         "host": "heroku-postgres-host",
         "dialect": "postgres",
         "dialectOptions": {
-            "ssl": {
-                "require": true,
-                "rejectUnauthorized": false
-                }
+            "ssl": true
         }
     }
 }
