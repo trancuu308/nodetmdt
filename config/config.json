@@ -7,17 +7,17 @@
         "dialect": "postgres"
     },
     "test": {
-        "username": "postgres",
-        "password": "postgres",
-        "database": "aromadb",
-        "host": "localhost",
-        "dialect": "postgres"
+        "username": "root",
+        "password": "null",
+        "database": "database_test",
+        "host": "127.0.0.1",
+        "dialect": "mysql"
     },
     "production": {
-        "username": "ewrhswrtphhopj",
-        "password": "e4d8c821edb9f0e2e9a8a4c4645ff94e043d7b5591fbdf3c54e6b4df67f34290",
-        "database": "d2qstu41fplnni",
-        "host": "ec2-52-73-199-211.compute-1.amazonaws.com",
+        "username": "gxsrprrgxvuppm",
+        "password": "99a75c9e8d8af6495f33de6e1ee78a5bcede802e3e6e19c97bb5f6c450553300",
+        "database": "ddgulso5ms2ona",
+        "host": "ec2-52-44-46-66.compute-1.amazonaws.com",
         "dialect": "postgres",
         "dialectOptions": {
             "ssl": true
