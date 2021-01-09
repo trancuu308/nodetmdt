@@ -79,11 +79,11 @@
             <select id="limit" onchange="selectParam('limit', this.value)">
               <option value="9">Show 9</option>
               <option value="18">Show 18</option>
-              <option value="36">Show 36</option>
+              <option value="35">Show 36</option>
             </select>
           </div>
           <div>
-            <form action="/products" method="GET"></form>
+            <form action="/products" method="GET">
                 <div class="input-group filter-bar-search">    
                     <input type="text" name="search" placeholder="Search">
                     <div class="input-group-append">
@@ -297,6 +297,8 @@
     // Thiet lap trang thai va duong dan href cho cac link cua pagenation
     $('#pagination li').addClass('page-item');
     $('#pagination li a').addClass('page-link');
+    let savePage = urlParams.get('page');
+
     $('#pagination li a').each((index, item) => {
       // href = /products?page=2
       let page = $(item).attr('href').split('=')[1];

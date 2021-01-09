@@ -15,7 +15,7 @@ router.post('/', userController.isLoggedIn, (req, res, next) => {
     controller
         .add(review)
         .then(() => {
-            res.redirect('/products/' + req.body.productId);
+            res.redirect('/products/' + review.productId);
         })
         .catch(error => next(error));
 });

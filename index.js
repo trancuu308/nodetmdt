@@ -70,10 +70,6 @@ app.use('/comments', require('./routes/commentRouter'));
 app.use('/reviews', require('./routes/reviewRouter'));
 app.use('/users', require('./routes/userRouter'));
 
-
-
-
-
 app.get('/sync', (req, res) =>{
     let models = require('./models');
     models.sequelize.sync()
@@ -99,6 +95,110 @@ app.get('/:page', (req, res) => {
     let page = req.params.page;
     res.render(page, { banner: banners[page]});
 });
+//Thanh toan
+const paypal = require('paypal-rest-sdk');
+const fs = require('fs');
+const exphdbs = require('express-handlebars');
+var path = require('path');
+const { parse } = require('path');
+
+
+app.set('views', path.join(__dirname, 'views'));
+app.engine('handlebars', exphdbs({ defaultLayout: 'main' }));
+
+
+var items=[
+    {
+        "name": "Apple-Northern Spy",
+        "sku": "30",
+        "price": "48.54",
+        "currency": "USD",
+        "quantity": 2
+    },
+    {
+        "name": "Beans-French",
+        "sku": "21",
+        "price": "89.23",
+        "currency": "USD",
+        "quantity": 1
+    },
+   ];
+
+
+var total=0;
+for(let i=0;i<items.length;i++)
+{
+    total+=parseFloat(items[i].price)*items[i].quantity;
+}
+
+paypal.configure({
+    'mode': 'sandbox', 
+    'client_id': 'ARJ8ho9Ri7v7mVXMnRhs-XspesymIFWZSMDvFLUvBIWcWs78HupPmfR-gRWhEoeGcFEQoyNCzX4vGwmc',
+    'client_secret': 'EGcMaxZIGBjPv5WaPEzHrg2K9s6drauP1KEEot-Ex2V-S45bGCXa1m-a9yys3hdGMyfxcZfeFzh5mgV1'
+});
+
+app.get('/', function (req, res) {
+    res.render('index.hbs',{"items": items});
+})
+
+app.post('/pay', function (req,res) {
+    var create_payment_json = {
+        "intent": "sale",
+        "payer": {
+            "payment_method": "paypal"
+        },
+        "redirect_urls": {
+            "return_url": "http://localhost:5000/success",
+            "cancel_url": "http://localhost:5000/cancel"
+        },
+        "transactions": [{
+            "item_list": {
+                "items": items
+            },
+            "amount": {
+                "currency": "USD",
+                "total": total.toString()
+            },
+            "description": "This is the payment description."
+        }]
+    };
+    paypal.payment.create(create_payment_json, function (error, payment) {
+        if (error) {
+            throw error;
+        } else {
+            for (let i = 0; i < payment.links.length; i++) {
+                if (payment.links[i].rel === 'approval_url') {
+                    res.redirect(payment.links[i].href);
+                }
+            }
+        }
+    });
+
+})
+app.get('/success', function (req, res) {
+    payerID = req.query.PayerID
+    var execute_payment_json = {
+        "payer_id": payerID,
+        "transactions": [{
+            "amount": {
+                "currency": "USD",
+                "total": total.toString()
+            }
+        }]
+    };
+    var paymentId = req.query.paymentId;
+
+    paypal.payment.execute(paymentId, execute_payment_json, function (error, payment) {
+        if (error) {
+            console.log(error.response);
+            throw error;
+        } else {
+            res.render('success.handlebars');
+        }
+    });
+
+})
+
 // Set Server Port & Start Server
 app.set('port', process.env.PORT || 5000);
 app.listen(app.get('port'), () => {

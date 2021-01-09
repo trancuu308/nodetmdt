@@ -18,10 +18,10 @@
         "logging": false
     },
     "production": {
-        "username": "heroku-postgres-username",
-        "password": "heroku-postgres-password",
-        "database": "heroku-postgres-database",
-        "host": "heroku-postgres-host",
+        "username": "idwkmjavjundjb",
+        "password": "6d881b4df542809626f58b5cf015416c7493d5a983b3c02cda579cf51eba8d9d",
+        "database": "dbd5nkegsj5cvb",
+        "host": "ec2-34-200-158-205.compute-1.amazonaws.com",
         "dialect": "postgres",
         "dialectOptions": {
             "ssl": true

@@ -12,7 +12,7 @@ controller.add = (review) => {
                     userId: review.userId,
                     productId: review.productId
                 }
-            })
+            }) 
             .then(data => {
                 if (data) {
                     return Review.update(review, {
