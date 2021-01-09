@@ -53,9 +53,9 @@ app.use((req, res, next) => {
     next();
 });
 
-//app.get('/', (req, res) => {
-  //  res.render('index');
- //});
+app.get('/', (req, res) => {
+    res.render('index');
+ });
 
 // Somewhere your code, turn off the logging
 // Define your router  here
